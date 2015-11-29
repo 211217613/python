@@ -1,21 +1,29 @@
-key = 25
-MAX = 26 # wrap around 
+message = "This is my secret messagd."
+print message
 
-string = 'cryptoisfun'
-c_text = []
-cipher = {'A' : 1, 'B' : 2, 'C' : 3, 'D' : 4}
+key = input('Input the key: ')
+mode = 'encrypt'
+LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+cipherText = ''
+message = message.upper()
+counter = 0
 
-for x in string:
-    temp = key + ord(x)
-    if temp > 26:
-        temp = 1 + ord(x) 
-    c_text.append(temp)
-    print ord(x)
+#run encryption decreyption on code on each symbol
+for symbol in message:
+	if symbol in LETTERS:
+		counter = counter + 1
+		num = LETTERS.find(symbol) #
+		# print "num: " , num
+		if mode == 'encrypt':
+			num = num + key
+		if mode == 'decrypt':
+			num = num - key
+		if num >= len(LETTERS):
+			num = num - len(LETTERS)
+		elif num < 0 :
+			num = num + len(LETTERS)
+		cipherText = cipherText + LETTERS[num]
 
-print c_text
-
-for x in c_text:
-    pass
-    
-
-    
+	else:
+		cipherText = cipherText + symbol
+print cipherText
