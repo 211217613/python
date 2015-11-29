@@ -1,4 +1,4 @@
 # python
 some python stuff
 
-Don't judge me bro. Just trying some stuff out.
+Don't judge me. Just trying some stuff out.
