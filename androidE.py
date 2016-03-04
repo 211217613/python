@@ -3,6 +3,7 @@ import subprocess
 import sys
 import re
 import os
+from time import sleep
 #Not running more than one emulator so serial number not needed
 ADBFLAGS = '-e'
 
@@ -26,6 +27,7 @@ required that slows tdown the process with the emulator
 print("leet coding skills")
 
 emulator = False
+screen = False
 
 
 def getAttachedDevices():
@@ -41,16 +43,25 @@ def getAttachedDevices():
 		emulator = True
 	elif 'emulator' not in output:
 		print "no emulator attached...launching emulator"
-		# subprocess.call(['/home/ruben/Dev/Cydia/pandroid/start.sh'], shell = True)
-		os.system('sh /home/ruben/Dev/Cydia/pandroid/start.sh')
+		subprocess.call(['/home/ruben/Dev/Cydia/pandroid/start.sh'], shell = False)
+		# os.system('sh /home/ruben/Dev/Cydia/pandroid/start.sh')
 
 	for char in output:
 		# print char
 		counter = counter + 1
 	print "counter: " , counter 
+
+def screenUnlock():
+	while subprocess.check_output(['adb -e shell getprop sys.boot_completed']) is not 1:
+		sleep(2)
 def main():
 	print("Getting list of devices")
 	getAttachedDevices()
+	print("Starting the emulator")
+	screenUnlock()
+	print("waiting for boot up")
+
+
 
 
 	" to unlock the screen adb shell input keyevent 82"
