@@ -24,11 +24,8 @@ regarding the emulator, there is usually lots of user interaction
 required that slows down the process with the emulator
 """
 
-print("leet coding skills")
-
 emulator = False
 screen = False
-
 
 def getAttachedDevices():
 	""" 
@@ -37,7 +34,8 @@ def getAttachedDevices():
 	"""
 
 	counter = 0
-	output = subprocess.check_output(['adb','devices'])	#returns byte string
+	output = str(subprocess.check_output(['adb','devices']))	#returns byte string
+
 	print("type output {}".format(type(output)))
 	#TODO: maybe use a regex to parse the output
 	if 'emulator' in output:
