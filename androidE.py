@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import subprocess
 import sys
 import re
@@ -20,8 +20,8 @@ ADBFLAGS = '-e'
 """
 Usage:
 This script will launch and automate some processes 
-regarding the emulator, there is usually lots of user interagction
-required that slows tdown the process with the emulator
+regarding the emulator, there is usually lots of user interaction
+required that slows down the process with the emulator
 """
 
 print("leet coding skills")
@@ -38,18 +38,21 @@ def getAttachedDevices():
 
 	counter = 0
 	output = subprocess.check_output(['adb','devices'])	#returns byte string
+	print("type output {}".format(type(output)))
+	#TODO: maybe use a regex to parse the output
 	if 'emulator' in output:
-		print "Emulator attached"
+		print ("Emulator attached")
 		emulator = True
 	elif 'emulator' not in output:
-		print "no emulator attached...launching emulator"
+		print ("no emulator attached...launching emulator")
 		subprocess.call(['/home/ruben/Dev/Cydia/pandroid/start.sh'], shell = False)
 		# os.system('sh /home/ruben/Dev/Cydia/pandroid/start.sh')
 
+	# [for char in output counter = counter + 1]
 	for char in output:
 		# print char
 		counter = counter + 1
-	print "counter: " , counter 
+	print("counter: {}".format( counter ) )
 
 def screenUnlock():
 	while subprocess.check_output(['adb -e shell getprop sys.boot_completed']) is not 1:
@@ -61,11 +64,7 @@ def main():
 	screenUnlock()
 	print("waiting for boot up")
 
-
-
-
 	" to unlock the screen adb shell input keyevent 82"
-
 
 if __name__ == '__main__':
 	main()
