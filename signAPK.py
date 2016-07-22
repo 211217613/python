@@ -32,7 +32,5 @@ def main():
 if __name__ == '__main__':
 	main()
 
-#jarsigner -verbose -keystore ~/.android/debug.keystore -storepass android -keypass android /home/ruben/Dev/Cydia/VioletCydia/VioletCydia.apk androiddebugkey
-
-
+#jarsigner -verbose -keystore ~/.android/debug.keystore -storepass android -keypass android 
 #jarsigner -verbose -keystore ~/.android/debug.keystore -storepass android -keypass android /path/to/MY.apk androiddebugkey
