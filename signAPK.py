@@ -6,7 +6,7 @@
 
 from subprocess import call
 import sys
-
+# TODO: fix path to use $USER env_var
 def main():
 
 	#get path to apk
