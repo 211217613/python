@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-
+"""
+Workflow for getting url's
+"""
 import urllib.request 	#Let me get urls. URLLIB2 newer and better?
 import sys		#Let me get argv[]
 import re
