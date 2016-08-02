@@ -34,21 +34,6 @@ def main():
     name = list()
     l1 = list()
     total = 0.0
-    with open('trello_expenses.json', 'r') as f:
-        file = f.read()
-        json_file = json.loads(file)
-        # pprint(file)
-        # print(json_file['lists'][0])
-    for card in json_file['cards']:
-        if card['idList'] == '577b17583e5d17ee55b20e45':
-            name.append( card['name'] )
-            # pprint(card['name'])
-
-    for entry in name:
-        l1.append( float(entry.split('-')[1]) )
-
-    total =  sum( l1)
-    # print( "Total from JSON {0}".format(total) )
 
 
 if __name__=='__main__':
