@@ -60,3 +60,5 @@ target/
 DataStructures*
 coursera
 
+# CSV
+*.csv
