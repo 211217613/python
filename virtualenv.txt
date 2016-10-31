@@ -1,0 +1,39 @@
+
+# DONT DO THIS!!!! or maybe try it
+sudo apt-get install virtualenvwrapper
+find / -type f -name virtualenvwrapper.sh  2>/dev/null
+find / -type f -name virtualenvwrapper_lazy.sh  2>/dev/null
+
+
+# DO THIS
+sudo pip[3] install virtualenvwrapper
+
+
+
+which virtualenvwrapper.sh
+    /usr/local/bin/virtualenvwrapper.sh
+
+which virtualenvwrapper_lazy.sh
+    /usr/local/bin/virtualenvwrapper_lazy.sh
+
+# OR WHEREVER YOU WANT
+mkdir ~/.virtualenvs 
+
+# Setting up a new virtual env
+cd /path/to/.virtualenv
+mkvirtualenv test1
+All python packages you pip install will be installed locally
+
+# TO deactivate just...
+deactivate
+
+# To remove a virtualenv
+rmvirtualenv [nameofvirtualenv]
+
+# To specify a python version with your virtualenv
+mkvirtualenv test1 -p /usr/bin/python3.3
+
+# Reference
+https://doughellmann.com/blog/2008/05/01/virtualenvwrapper/
+http://www.simononsoftware.com/virtualenv-tutorial-part-1/
+http://www.simononsoftware.com/virtualenv-tutorial-part-2/

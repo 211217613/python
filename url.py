@@ -2,13 +2,17 @@
 """
 Workflow for getting url's
 """
-import urllib.request 	#Let me get urls. URLLIB2 newer and better?
-import sys		#Let me get argv[]
+import bs4 as bs
+import urllib.request 	# Let me get urls. URLLIB2 newer and better?
+import sys		# Let me get argv[]
 import re
+import requests 
+
+URL = 'http://www.cs.fsu.edu/~redwood/OffensiveComputerSecurity/'
+URL_LECTURE = 'http://www.cs.fsu.edu/~redwood/OffensiveComputerSecurity/lectures.html'
 
 def main():
-	print("in main")
-	print(len(sys.argv))
+	# print(len(sys.argv))
 	# for link in soup.findAll('a'):
 		# print(link.get('href'))
 		
@@ -19,10 +23,44 @@ def main():
 	else:
 		url = sys.argv[1]
 
-
-	response = urllib.request.urlopen(url)
+    # Get the page
+	response = urllib.request.urlopen(URL_LECTURE)
 	print ('RESPONSE:', response)
 	print ('URL     :', response.geturl())
+
+	# Get the bs4 object
+	soup = bs.BeautifulSoup(response, 'lxml')
+	print('Title: {}'.format(soup.title.string))
+
+	# beginning navigation
+	print('nav: {}'.format(soup.title.parent.name))
+
+	# Get a paragraph <p> tags
+	print('<p>: {}'.format(soup.p.name))
+
+	# Get all <p> tags
+	# for paragraph in soup.find_all('p'):
+	# 	print('<p>: {}'.format(paragraph.string))
+
+	# Get all links
+	# for url in soup.find_all('a'):
+	# 	print('url: {}'.format(url.get('href')))
+	# 	# if 'tube' in url.get('href'):
+		# 	print('url: {}'.format(url.get('href')))
+
+
+	for iFrame in soup.find_all('iframe'):
+		# print('iFrame: {}'.format( iFrame))
+		# print('iFrame src: {}'.format( iFrame.attrs['src'][2:]))
+		temp_respone = iFrame.attrs['src']
+		temp_respone = 'https:' + temp_respone
+		print(temp_respone)
+		i_respone = urllib.request.urlopen(temp_respone)
+		# print('i_respone: {}'.format(i_respone))
+
+		# iframe_soup = bs.BeautifulSoup(i_respone)
+		# print(iframe_soup)
+	
 
 	headers = response.info()
 	# print 'DATE    :', headers['date']
@@ -40,5 +78,4 @@ def main():
 
 
 if __name__ == '__main__':
-	print('tessssstttt')
-    main()
+	main()
